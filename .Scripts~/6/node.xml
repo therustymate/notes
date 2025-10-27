@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cherrytree>
-  <node unique_id="6" master_id="0" name="Hide Console Window State" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="120" is_bold="0" foreground="" ts_creation="1761523572" ts_lastsave="1761529817">
-    <rich_text justification="left"></rich_text>
-    <rich_text>
-</rich_text>
+  <node unique_id="6" master_id="0" name="PowerShell Hide Console Window State" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="120" is_bold="0" foreground="" ts_creation="1761523572" ts_lastsave="1761523724">
     <rich_text justification="left"></rich_text>
     <rich_text>
 
-</rich_text>
-    <rich_text justification="left"></rich_text>
-    <rich_text>
+
+
 Change the number to change the state.</rich_text>
     <table char_offset="0" justification="left" col_min="300" col_max="300" col_widths="0,0">
       <row>
